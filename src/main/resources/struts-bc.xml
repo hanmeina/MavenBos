@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+  <package name="bc" extends="needlogin">
+  
+          <!-- 配置取派标准Action -->
+         <action name="standard_*" class="standardAction" method="{1}">
+             <result name="successSave">/WEB-INF/pages/base/standard.jsp</result>
+             <!-- 分页查询标准数据 -->
+			 <result name="pageQuerySuccess" type="json">
+				<param name="root">pageResponseBean</param>
+				<!-- 配置 属性includeProperties 指定哪些属性返回  -->
+				<param name="includeProperties">
+					<!-- 正则表达式 格式  -->
+					total, <!-- pageResponseBean的 total 属性返回  -->
+					rows\[\d+\]\.id,
+					rows\[\d+\]\.name,
+					rows\[\d+\]\.minweight,
+					rows\[\d+\]\.maxweight,
+					rows\[\d+\]\.updatetime,
+					rows\[\d+\]\.user\.username,
+					rows\[\d+\]\.user\.station
+				</param>
+			</result> 
+			<!-- 收派标准ajax列表 --> 
+			<result name="ajaxListSuccess" type="json">
+			    <param name="root">standardList</param>    
+			    	<param name="includeProperties">
+			    	      \[\d+\]\.id,
+			    	      \[\d+\]\.name
+			    	</param>  
+			</result>    
+    
+         </action>
+         
+         <!-- 收派员信息action -->
+         <action name="staff_*" class="staffAction" method="{1}">
+              <!-- 插入与修改 -->
+              <result name="saveOrUpdateSUCCESS">/WEB-INF/pages/base/staff.jsp</result>              
+                  <!-- 取派员信息的json数据 -->
+                <result name="pageQuerySUCCESS" type="json">
+                     <param name="root">pageResponseBean</param>
+                     <param name="includeProperties">
+			    	   total,
+			    	   rows\[\d+\]\.id,
+			    	   rows\[\d+\]\.name,
+			    	   rows\[\d+\]\.telephone,
+			    	   rows\[\d+\]\.station,
+			    	   rows\[\d+\]\.haspda,
+			    	   rows\[\d+\]\.deltag,
+			    	   rows\[\d+\]\.standard\.id,
+			    	   rows\[\d+\]\.standard\.name
+			    	 </param>  			    	 
+                </result>
+                <result name="delBatchSUCCESS">/WEB-INF/pages/base/staff.jsp</result>  
+                  <!-- 取派员信息 -->
+                 <result name="staffListSUCCESS" type="json">
+                   <param name="root">staffList</param>
+                   <param name="includeProperties">
+			    	      \[\d+\]\.id,
+			    	      \[\d+\]\.name
+			    	</param>                
+                </result>  
+         
+         </action>
+        
+         <!-- 区域管理action -->
+         <action name="region_*" class="regionAction" method="{1}">
+            <result name="importXlsSUCCESS" type="json">
+               <param name="root">map</param>
+            </result> 
+            <result name="pageQuerySUCCESS" type="json">
+               <param name="root">pageResponseBean</param>
+               <param name="includeProperties">
+                       total,
+			    	   rows\[\d+\]\.id,
+			    	   rows\[\d+\]\.province,
+			    	   rows\[\d+\]\.city,
+			    	   rows\[\d+\]\.district,
+			    	   rows\[\d+\]\.postcode,
+			    	   rows\[\d+\]\.shortcode,
+			    	   rows\[\d+\]\.citycode
+               </param>
+            </result>   
+           <result name="ajaxlistSUCCESS" type="json">
+				<param name="root">regions</param>
+				<param name="includeProperties">
+					\[\d+\]\.id,
+					\[\d+\]\.info
+				</param>
+			</result>
+
+                
+         </action>
+         
+         <!-- 分区Action -->
+         <action name="subarea_*" class="subareaAction" method="{1}">
+            <result name="saveOrUpdateSUCCESS">/WEB-INF/pages/base/subarea.jsp</result>
+            <result name="pageQuerySUCCESS" type="json">
+				<param name="root">pageResponseBean</param>
+				<param name="includeProperties">
+					total,
+					rows\[\d+\]\.id,
+					rows\[\d+\]\.addresskey,
+					rows\[\d+\]\.startnum,
+					rows\[\d+\]\.endnum,
+					rows\[\d+\]\.single,
+					rows\[\d+\]\.position,
+					rows\[\d+\]\.region\.province,
+					rows\[\d+\]\.region\.city,
+					rows\[\d+\]\.region\.district
+				</param>
+			</result>
+			<result name="exportXlsSUCCESS" type="stream">
+			   <param name="contentType">application/vnd.ms-excel</param>
+			   <param name="contentDisposition">attachment;filename=${downloadFileName}</param>
+			</result>
+			
+			<result name="findnoassociationSUCCESS" type="json">
+				<param name="root">subareas</param>
+				<param name="includeProperties">
+					\[\d+\]\.subareaid,
+					\[\d+\]\.addresskey,
+					\[\d+\]\.position
+				</param>
+			</result>	
+         </action>
+         <!-- 定区Action -->
+         <action name="decidedzone_*" class="decidedzoneAction" method="{1}">
+             <result name="saveOrUpdateSUCCESS">/WEB-INF/pages/base/decidedzone.jsp</result>
+             <result name="pageQuerySUCCESS" type="json">
+                   <param name="root">pageResponseBean</param>
+                   <param name="includeProperties">
+                       total,
+					   rows\[\d+\]\.id,
+					   rows\[\d+\]\.name,
+					   rows\[\d+\]\.staff\.name,
+					   rows\[\d+\]\.staff\.telephone,
+					   rows\[\d+\]\.staff\.station
+                  </param> 
+             </result>
+			<result name="findNoAssociationCustomersSUCCESS" type="json">
+				<param name="root">customers</param>
+			</result>	
+			<result name="findHasAssociationCustomersSUCCESS" type="json">
+				<param name="root">customers</param>
+			</result>	
+			<result name="assignedCustomerToDecidedZoneSUCCESS">/WEB-INF/pages/base/decidedzone.jsp</result>
+             
+         </action>
+  
+    
+  </package>
+
+</struts>

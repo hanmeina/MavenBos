@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+  <package name="qp" extends="needlogin">
+  
+         <!-- 业务通知单受理 --> 
+         <action name="noticebill_*" class="noticeBillAction" method="{1}" >
+            <result name="saveSUCCESS">/WEB-INF/pages/qupai/noticebill_add.jsp</result>
+         
+         </action>
+         
+         
+         <!-- 工作单-->
+         <action name="workordermanage_*" class="workOrderManageAction" method="{1}">
+              <result name="saveOrUpdateSUCCESS" type="json">
+                <param name="root">map</param>
+              
+              </result>
+              
+              <result  name="pageQuerySUCCESS" type="json">
+                  <param name="root">pageResponseBean</param>
+                 <param name="includeProperties">
+                     		<!-- 正则表达式 格式  -->
+					total, <!-- pageResponseBean的 total 属性返回  -->
+					rows\[\d+\]\.id,
+					rows\[\d+\]\.arrivecity,
+					rows\[\d+\]\.product,
+					rows\[\d+\]\.num,
+                 	rows\[\d+\]\.weight,
+					rows\[\d+\]\.floadreqr
+                 	
+                 	</param>
+              
+              
+              </result>
+         </action>
+       
+            
+            
+  </package>
+
+</struts>

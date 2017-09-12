@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+   <package name="user" extends="needlogin">
+       <!-- 用户管理的action-->
+        <action name="user_*" class="userAction" method="{1}">
+            <!-- 修改密码 -->
+            <result name="editPasswordSuccess" type="json">
+                <!-- 配置root参数，指定将值栈那个数据返回 -->
+                 <param name="root">map</param>
+            </result>
+        </action>
+   </package>
+   
+   
+   <!-- 导出结果集 -->
+	<package name="nologin" extends="struts-default">	
+	   <!-- 配置登录Action -->
+		<action name="login" class="loginAction">
+		   <!-- 配置结果集 -->
+		   <result name="input">/login.jsp</result>
+		   <result type="redirect">/index.jsp</result>		
+		</action>	  
+	</package>
+</struts>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop.xsd
+	http://www.springframework.org/schema/tx 
+	http://www.springframework.org/schema/tx/spring-tx.xsd">
+    <!-- 配置用户管理service -->
+    <bean id="userService" class="com.xjtu.bos.service.impl.user.UserServiceImpl"></bean>
+     <!-- 配置取派标准service -->
+    <bean id="standardService" class="com.xjtu.bos.service.impl.bc.StandardServiceImpl"></bean>
+     <!-- 配置取派员管理service -->
+    <bean id="staffService" class="com.xjtu.bos.service.impl.bc.StaffServiceImpl"></bean>
+      <!-- 配置区域管理service -->
+    <bean id="regionService" class="com.xjtu.bos.service.impl.bc.RegionServiceImpl"></bean>
+      <!-- 配置分区service -->
+    <bean id="subareaService" class="com.xjtu.bos.service.impl.bc.SubareaServiceImpl"></bean>
+      <!-- 配置定区service -->
+    <bean id="decidedzoneService" class="com.xjtu.bos.service.impl.bc.DecidedzoneServiceImpl"></bean>
+    
+       <!-- 配置业务通知单service -->
+    <bean id="noticeBillService" class="com.xjtu.bos.service.impl.qp.NoticeBillServiceImpl"></bean>
+     <!-- 配置业务工作单service -->
+    <bean id="workOrderManageService" class="com.xjtu.bos.service.impl.qp.WorkOderManageServiceImpl"></bean>
+</beans>

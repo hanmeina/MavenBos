@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop.xsd
+	http://www.springframework.org/schema/tx 
+	http://www.springframework.org/schema/tx/spring-tx.xsd">
+    <!-- 配置登录action -->
+    <bean id="loginAction" class="com.xjtu.bos.web.action.user.LoginAction" scope="prototype"></bean>
+    <!-- 配置用户管理action -->
+    <bean id="userAction" class="com.xjtu.bos.web.action.user.UserAction" scope="prototype"></bean>
+    <!-- 配置取派标准action -->
+    <bean id="standardAction" class="com.xjtu.bos.web.action.bc.StandardAction" scope="prototype"></bean>
+     <!-- 配置取派员action -->
+    <bean id="staffAction" class="com.xjtu.bos.web.action.bc.StaffAction" scope="prototype"></bean>
+     <!-- 配置区域管理action -->
+    <bean id="regionAction" class="com.xjtu.bos.web.action.bc.RegionAction" scope="prototype"></bean>
+     <!-- 配置分区action -->
+    <bean id="subareaAction" class="com.xjtu.bos.web.action.bc.SubareaAction" scope="prototype"></bean>
+     <!-- 配置定区action -->
+    <bean id="decidedzoneAction" class="com.xjtu.bos.web.action.bc.DecidedzoneAction" scope="prototype"></bean>
+  
+   <!-- 配置通知单action -->
+    <bean id="noticeBillAction" class="com.xjtu.bos.web.action.qp.NoticeBillAction" scope="prototype"></bean>
+    <!-- 配置工作单action -->
+    <bean id="workOrderManageAction" class="com.xjtu.bos.web.action.qp.WorkOrderManageAction" scope="prototype"></bean>
+</beans>

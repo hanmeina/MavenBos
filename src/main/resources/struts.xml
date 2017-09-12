@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+    
+	<constant name="struts.devMode" value="true" />
+	<!--修改form默认布局样式-->
+	<constant name="struts.ui.theme" value="simple"></constant>
+	<constant name="struts.objectFactory" value="spring"></constant>
+
+	<package name="needlogin" extends="json-default">
+		<!-- 配置拦截器 -->
+		<interceptors>
+		   <interceptor name="loginInterceptor" class="com.xjtu.bos.web.interceptor.LoginInterceptor"></interceptor>
+		   <!-- 定义新的拦截器栈 -->
+		   <interceptor-stack name="loginStack">
+		      <interceptor-ref name="defaultStack"></interceptor-ref>
+		      <interceptor-ref name="loginInterceptor"></interceptor-ref>
+		   </interceptor-stack>		
+		</interceptors>
+		<!-- 设置默认拦截器栈 -->
+		<default-interceptor-ref name="loginStack"></default-interceptor-ref>
+		<!-- 配置全局结果集 -->
+		<global-results>
+		   <result name="login">/login.jsp</result>		   
+		</global-results>
+		
+		<action name="index">   
+			<result>/index.jsp</result>
+		</action>
+		<!-- 需要进行权限控制的页面访问 -->
+		<action name="page_*_*">
+			<result type="dispatcher">/WEB-INF/pages/{1}/{2}.jsp</result>
+		</action>
+		
+         
+      
+         
+       
+         
+         
+	</package>
+	
+	
+<include file="struts-user.xml"></include>
+<include file="struts-bc.xml"></include>
+<include file="struts-qp.xml"></include>
+</struts>
